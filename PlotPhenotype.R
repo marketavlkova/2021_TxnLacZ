@@ -49,6 +49,7 @@ ndir <- length(unlist(strsplit(path.chrom, split = '/', fixed = T)))
 for (path in path.plas) {
   setwd(path)
   if (!file.exists('Peaks.csv')) {
+    cat(paste('Analyzing data files in:', path, '\n'))
     ### extract info about last directory
     end.dir <- unlist(strsplit(path, split = '/', fixed = T))[ndir]
     cond <- unlist(strsplit(end.dir, split = '_', fixed = T))[3]
@@ -74,6 +75,7 @@ for (path in path.plas) {
 
 setwd(path.chrom)
 if (!file.exists('Peaks.csv')) {
+  cat(paste('Analyzing data files in:', path.chrom, '\n'))
   ### extract info about last directory
   end.dir <- unlist(strsplit(path, split = '/', fixed = T))[ndir]
   ### get all files names ending with .fsc
@@ -777,7 +779,7 @@ pdf(file = 'Figure_4c.pdf', width = 5, height = 5)
   cond3.mut2 <- unlist(TXN[which(grepl('_lactose_', names(TXN)) & grepl('random_2', names(TXN)))])
   cond3.mut3 <- unlist(TXN[which(grepl('_lactose_', names(TXN)) & grepl('random_3', names(TXN)))])
   cond3.seg <- unlist(TXN[which(grepl('_lactose_', names(TXN)) & grepl('segregating', names(TXN)))])
-  source('~/Documents/addgrids3d.r')
+  source(paste0(root.path, '/addgrids3d.r'))
   sp <- scatterplot3d(cond1.mut1, cond2.mut1, cond3.mut1,
         pch = '', grid = F, box = F,
         xlab = cond.ls[1], xlim = lims,

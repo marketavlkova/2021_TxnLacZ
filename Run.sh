@@ -9,7 +9,6 @@
 wget --content-disposition https://figshare.com/ndownloader/files/30817357
 tar -xzvf PhenAnalysis.tar.gz
 rm PhenAnalysis.tar.gz
-cd -
 
 ### STEP 2:
 ### produce Figures (3 - 7 and Supp 3 - 4)
