@@ -240,7 +240,6 @@ for (cond in names(cond.ls)) {
   off.m <- mean(c((pos.mut.m - pos.ref.m), (neg.mut.m - neg.ref.m), (mg1655.mut.m - mg1655.ref.m)), na.rm = T)
   offsetTXN.m <- c(offsetTXN.m, off.m)
   off.n <- mean(c((pos.mut.n - pos.ref.n), (neg.mut.n - neg.ref.n), (mg1655.mut.n - mg1655.ref.n)), na.rm = T)
-  # print(off.m)
   offsetTXN.n <- c(offsetTXN.n, off.n)
   ### set second dataset to calculate offsets from
   chr <- chrom.ls[[cond]]
@@ -425,14 +424,13 @@ pdf(file = 'SupplementaryFigure_3b.pdf', width = 8, height = 3)
           }
         }
 
-        ct <- cor.test(txn, tot, method = 'spearman')
+        ct <- cor.test(txn, tot, method = 'pearson')
         plot(txn, tot, pch = 16, xlab = '', ylab = '',
               col = alpha('black', 0.3),
               main = cond.ls[[cond]],
               xlim = c(2, 5.2), ylim = c(2, 5.2))
         text(x = 3.6, y = 5.2, labels = paste('rho =', round(ct$estimate, digits = 3)))
         text(x = 3.6, y = 5, labels = paste('p =', signif(ct$p.value, digits = 2)))
-        # text(txn, tot, labels = nam, cex = 0.5)
         abline(0, 1, col = 'blue', lty = 3)
         title(xlab = 'Modal fluorescence in pMV001', line = 2.5)
         if (cond == names(cond.ls)[1]) {
@@ -496,7 +494,7 @@ pdf(file = 'Figure_3a.pdf', width = 6, height = 2)
   par(mfrow = c(1, 3),
       las = 1)
 
-  cat(paste('p-value indicating significant differences in transcrition rate variance between random and segregating variants in:\n'))
+  cat(paste('p-value indicating significant differences in transcription rate variance between random and segregating variants in:\n'))
   ### loop through all environments
   for (n in 1:3) {
     cond <- names(cond.ls)[n]
